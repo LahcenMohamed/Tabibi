@@ -1,0 +1,6 @@
+@Tabibi.Api_HostAddress = http://localhost:5245
+
+GET {{Tabibi.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

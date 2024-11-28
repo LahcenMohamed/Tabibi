@@ -1,4 +1,4 @@
-﻿namespace Tabibi.Domain.Shared
+﻿namespace Tabibi.Domain.Shared.Entities
 {
     public abstract class FullAuditedEntity
     {

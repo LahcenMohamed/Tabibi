@@ -30,4 +30,10 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tabibi.Core\Tabibi.Core.csproj" />
+    <ProjectReference Include="..\Tabibi.Domain\Tabibi.Domain.csproj" />
+    <ProjectReference Include="..\Tabibi.Infrastructure\Tabibi.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

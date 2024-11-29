@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tabibi.Infrastructure.DbContexts;
 
@@ -11,9 +12,11 @@ using Tabibi.Infrastructure.DbContexts;
 namespace Tabibi.Infrastructure.Migrations
 {
     [DbContext(typeof(TabibiDbContext))]
-    partial class TabibiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241128182854_AddEmailCode")]
+    partial class AddEmailCode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -239,13 +242,11 @@ namespace Tabibi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("EmailCode")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
-
-                    b.Property<string>("ForgetPasswordCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");

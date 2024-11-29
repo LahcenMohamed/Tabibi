@@ -27,4 +27,14 @@
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tabibi.Domain\Tabibi.Domain.csproj" />
+    <ProjectReference Include="..\Tabibi.Infrastructure\Tabibi.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Authenfications\Queries\" />
+    <Folder Include="Features\Users\Queries\Shared\" />
+  </ItemGroup>
+
 </Project>

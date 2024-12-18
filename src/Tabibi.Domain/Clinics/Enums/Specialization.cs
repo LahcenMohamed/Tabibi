@@ -1,4 +1,4 @@
-﻿namespace Tabibi.Domain.Doctors.Enums
+﻿namespace Tabibi.Domain.Clinics.Enums
 {
     public enum Specialization : byte
     {

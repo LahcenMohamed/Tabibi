@@ -1,13 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Tabibi.Infrastructure.DbContexts;
 
 namespace Tabibi.Infrastructure.Shared.Repositories;
 
-public class BaseRepository<TModel>(TabibiDbContext context) : IBaseRepository<TModel> where TModel : class
+public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration configuration) : IBaseRepository<TModel> where TModel : class
 {
     #region Vars / Props
 
     protected readonly TabibiDbContext _dbContext = context;
+    protected readonly string _connectionString = configuration.GetConnectionString("DefaultConnectionString");
+
 
     #endregion
 
@@ -22,7 +25,7 @@ public class BaseRepository<TModel>(TabibiDbContext context) : IBaseRepository<T
     }
 
 
-    public IQueryable<TModel> GetTableNoTracking()
+    public virtual IQueryable<TModel> GetTableNoTracking()
     {
         return _dbContext.Set<TModel>().AsNoTracking().AsQueryable();
     }

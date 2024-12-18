@@ -58,7 +58,7 @@ namespace Reygency.Infrastructure.Features.Authenifactions
             var result = await userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user, "Agency");
+                await userManager.AddToRoleAsync(user, "Doctor");
                 Random random = new Random();
                 user.EmailCode = random.Next(111111, 1000000).ToString();
                 await _userManager.UpdateAsync(user);

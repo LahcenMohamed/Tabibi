@@ -1,0 +1,43 @@
+using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using Tabibi.Domain.Clinics.Entities.Doctors;
+using Tabibi.Infrastructure.DbContexts;
+using Tabibi.Infrastructure.Shared.Repositories;
+
+namespace Tabibi.Infrastructure.Features.Doctors;
+
+public sealed class DoctorRepository(TabibiDbContext context,
+                                     IConfiguration configuration)
+                                     : BaseRepository<Doctor>(context, configuration), IDoctorRepository
+{
+
+    public IQueryable<TResponse> GetAllByDapper<TResponse>()
+    {
+        string sql = @"SELECT 
+                   d.Id AS Id, 
+                   d.FullName_FirstName AS FirstName,
+                   d.FullName_MiddelName AS MiddelName,
+                   d.FullName_LastName AS LastName,
+                   d.Gender AS Gender, 
+                   d.DateOfBirth AS DateOfBirth, 
+                   d.PhoneNumber AS PhoneNumber, 
+                   d.EmailAddress AS EmailAddress, 
+                   d.PhotoUrl AS PhotoUrl, 
+                   d.Notes AS Notes, 
+                   d.ClinicId AS ClinicId,
+                   d.IsDeleted
+                   FROM Doctors d WITH(NOLOCK)
+                   WHERE d.IsDeleted = 0";
+
+        using var connection = new SqlConnection(_connectionString);
+        connection.Open();
+
+        var doctors = connection.Query<TResponse>(sql)
+            .AsQueryable();
+
+        return doctors;
+    }
+
+
+}

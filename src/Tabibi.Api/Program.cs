@@ -26,7 +26,7 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
     var context = scope.ServiceProvider.GetRequiredService<TabibiDbContext>();
-    //await MaigrateDataBase.SeedAsync(context);
+    await MaigrateDataBase.SeedAsync(context);
     await RoleSeeder.SeedAsync(roleManager);
     await UserSeeder.SeedAsync(userManager);
 }

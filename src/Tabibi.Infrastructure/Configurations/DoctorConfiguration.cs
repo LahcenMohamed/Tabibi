@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tabibi.Domain.Doctors;
+using Tabibi.Domain.Clinics.Entities.Doctors;
 
 namespace Tabibi.Infrastructure.Configurations
 {
@@ -15,11 +15,9 @@ namespace Tabibi.Infrastructure.Configurations
                 fullNameBuilder.Property(x => x.LastName).IsRequired().HasMaxLength(100);
             });
 
-            builder.OwnsOne(x => x.Address, addressBuilder =>
-            {
-                addressBuilder.Property(x => x.State).IsRequired().HasMaxLength(100);
-                addressBuilder.Property(x => x.City).IsRequired().HasMaxLength(100);
-            });
+            builder.HasOne(x => x.Clinic)
+                   .WithOne(x => x.Doctor)
+                   .HasForeignKey<Doctor>(x => x.ClinicId);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace Tabibi.Core.Features.Doctors.Commands.Add
 
             await _unitOfWork.SaveChangesAsync();
 
-            return Result.Success(doctor.Id);
+            return Result.Created(doctor.Id);
         }
     }
 }

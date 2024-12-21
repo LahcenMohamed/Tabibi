@@ -4,6 +4,7 @@ namespace Tabibi.Core.Features.Clinics.Queries.GetAll
 {
     public sealed class GetAllClinicsQueryResponse
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string? MinDescription { get; set; }
         public Specialization Specialization { get; set; }

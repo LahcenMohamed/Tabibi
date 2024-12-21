@@ -14,7 +14,7 @@ namespace Tabibi.Domain.Clinics
         public string PhoneNumber { get; private set; }
         public string? SecondPhoneNumber { get; private set; }
         public string Email { get; private set; }
-        public Address Address { get; set; }
+        public Address Address { get; private set; }
         public string? PhotoUrl { get; private set; }
         public Guid DoctorId { get; private set; }
         public Doctor Doctor { get; private set; }

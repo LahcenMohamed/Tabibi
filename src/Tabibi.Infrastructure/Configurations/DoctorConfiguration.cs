@@ -18,6 +18,8 @@ namespace Tabibi.Infrastructure.Configurations
             builder.HasOne(x => x.Clinic)
                    .WithOne(x => x.Doctor)
                    .HasForeignKey<Doctor>(x => x.ClinicId);
+
+            builder.HasQueryFilter(x => !x.IsDeleted);
         }
     }
 }

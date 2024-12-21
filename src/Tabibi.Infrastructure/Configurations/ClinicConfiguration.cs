@@ -24,6 +24,8 @@ namespace Tabibi.Infrastructure.Configurations
             builder.HasOne<ApplicationUser>()
                    .WithMany()
                    .HasForeignKey(x => x.UserId);
+
+            builder.HasQueryFilter(x => !x.IsDeleted);
         }
     }
 }

@@ -6,5 +6,6 @@ namespace Tabibi.Infrastructure.Features.Doctors
     public interface IDoctorRepository : IBaseRepository<Doctor>
     {
         IQueryable<TResponse> GetAllByDapper<TResponse>();
+        TResponse GetByClinicId<TResponse>(Guid clinicId);
     }
 }

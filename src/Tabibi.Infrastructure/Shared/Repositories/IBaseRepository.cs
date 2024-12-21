@@ -3,8 +3,7 @@
 public interface IBaseRepository<TModel>
 {
     TModel? GetById(Guid id);
-    IQueryable<TModel> GetTableNoTracking();
-    Task<List<TModel>> GetTableAsTracking();
+    IQueryable<TModel> GetAll();
     TModel Add(TModel entity);
     void AddRange(ICollection<TModel> entities);
     void Update(TModel entity);

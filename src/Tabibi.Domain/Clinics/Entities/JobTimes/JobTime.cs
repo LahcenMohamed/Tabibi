@@ -11,13 +11,14 @@ namespace Tabibi.Domain.Clinics.Entities.JobTimes
 
         }
 
-        public static JobTime Create(DayOfWeek day, TimeOnly startTime, TimeOnly endTime, Guid userId)
+        public static JobTime Create(DayOfWeek day, TimeOnly startTime, TimeOnly endTime, Guid clinicId, Guid userId)
         {
             return new JobTime
             {
                 Day = day,
                 StartTime = startTime,
                 EndTime = endTime,
+                ClinicId = clinicId,
                 CreatedAt = DateTime.Now,
                 CreatedBy = userId
             };

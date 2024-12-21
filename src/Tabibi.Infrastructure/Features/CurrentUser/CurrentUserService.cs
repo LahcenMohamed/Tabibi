@@ -42,14 +42,14 @@ namespace Tabibi.Infrastructure.Features.CurrentUser
             return roles.ToList();
         }
 
-        public int GetAgencyId()
+        public Guid GetClinicId()
         {
-            var agencyId = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(claim => claim.Type == "AgencyId").Value;
-            if (agencyId == null)
+            var clinicId = _httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(claim => claim.Type == "ClinicId").Value;
+            if (clinicId == null)
             {
                 throw new UnauthorizedAccessException();
             }
-            return int.Parse(agencyId);
+            return Guid.Parse(clinicId);
         }
     }
 }

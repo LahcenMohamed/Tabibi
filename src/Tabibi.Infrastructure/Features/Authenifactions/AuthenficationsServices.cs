@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using Reygency.Infrastructure.UnitOfWorks;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Tabibi.Domain.Shared.Helpers;
@@ -12,13 +13,14 @@ namespace Reygency.Infrastructure.Features.Authenifactions
     public sealed class AuthenficationsServices(UserManager<ApplicationUser> userManager,
                                                 SignInManager<ApplicationUser> signInManager,
                                                 IEmailServices emailServices,
-                                                JwtSettings jwtSettings) : IAuthenficationsServices
+                                                JwtSettings jwtSettings,
+                                                IUnitOfWork unitOfWork) : IAuthenficationsServices
     {
         private readonly UserManager<ApplicationUser> _userManager = userManager;
         private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
         private readonly IEmailServices _emailServices = emailServices;
         private readonly JwtSettings _jwtSettings = jwtSettings;
-
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task<Result<string>> SigninAsync(string userNameOrEmail, string password)
         {
@@ -39,8 +41,17 @@ namespace Reygency.Infrastructure.Features.Authenifactions
                 {
                     var roles = await _userManager.GetRolesAsync(user);
                     var role = roles.FirstOrDefault();
-                    (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5));
-                    return Result.Success(accessToken);
+                    if (role == "Admin")
+                    {
+                        (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5));
+                        return Result.Success(accessToken);
+                    }
+                    else
+                    {
+                        var clinic = _unitOfWork.ClinicRepository.GetByUserId(user.Id);
+                        (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5), clinic.Id);
+                        return Result.Success(accessToken);
+                    }
                 }
                 return Result.Unauthorized<string>("uncorrect password");
             }
@@ -59,9 +70,12 @@ namespace Reygency.Infrastructure.Features.Authenifactions
             if (result.Succeeded)
             {
                 await userManager.AddToRoleAsync(user, "Doctor");
+
                 Random random = new Random();
                 user.EmailCode = random.Next(111111, 1000000).ToString();
+
                 await _userManager.UpdateAsync(user);
+
                 var message = $"Confirm email code is: {user.EmailCode}";
                 var emailResponse = await _emailServices.SendEmailAsync(user.Email, message, "Confirm Email");
                 if (!emailResponse.Succeeded)
@@ -73,7 +87,7 @@ namespace Reygency.Infrastructure.Features.Authenifactions
             return Result.BadRequest<string>(result.Errors.FirstOrDefault().Description);
         }
 
-        private async Task<(JwtSecurityToken, string)> GetToken(ApplicationUser applicationUser, DateTime expire, int agencyId = 0)
+        private async Task<(JwtSecurityToken, string)> GetToken(ApplicationUser applicationUser, DateTime expire, Guid? clinicId = null)
         {
             var claims = new List<Claim>
                 {
@@ -81,9 +95,9 @@ namespace Reygency.Infrastructure.Features.Authenifactions
                     new Claim(ClaimTypes.Name,applicationUser.UserName),
                     new Claim(ClaimTypes.Email,applicationUser.Email)
                 };
-            if (agencyId != 0)
+            if (clinicId is not null)
             {
-                claims.Add(new Claim("AgencyId", agencyId.ToString()));
+                claims.Add(new Claim("ClinicId", clinicId.ToString()));
             }
             var roles = await _userManager.GetRolesAsync(applicationUser);
             claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));

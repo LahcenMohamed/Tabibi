@@ -39,5 +39,30 @@ public sealed class DoctorRepository(TabibiDbContext context,
         return doctors;
     }
 
+    public TResponse GetByClinicId<TResponse>(Guid clinicId)
+    {
+        string sql = @"SELECT 
+                   d.Id AS Id, 
+                   d.FullName_FirstName AS FirstName,
+                   d.FullName_MiddelName AS MiddelName,
+                   d.FullName_LastName AS LastName,
+                   d.Gender AS Gender, 
+                   d.DateOfBirth AS DateOfBirth, 
+                   d.PhoneNumber AS PhoneNumber, 
+                   d.EmailAddress AS EmailAddress, 
+                   d.PhotoUrl AS PhotoUrl, 
+                   d.Notes AS Notes, 
+                   d.ClinicId AS ClinicId,
+                   d.IsDeleted
+                   FROM Doctors d WITH(NOLOCK)
+                   WHERE d.IsDeleted = 0 
+                   AND ClinicId = @clinicId";
 
+        using var connection = new SqlConnection(_connectionString);
+        connection.Open();
+
+        var doctor = connection.QueryFirst<TResponse>(sql, new { clinicId });
+
+        return doctor;
+    }
 }

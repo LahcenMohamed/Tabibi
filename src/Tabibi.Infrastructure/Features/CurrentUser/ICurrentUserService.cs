@@ -6,7 +6,7 @@ namespace Tabibi.Infrastructure.Features.CurrentUser
     {
         public Task<ApplicationUser> GetUserAsync();
         public Guid GetUserId();
-        public int GetAgencyId();
+        public Guid GetClinicId();
         public Task<List<string>> GetCurrentUserRolesAsync();
     }
 }

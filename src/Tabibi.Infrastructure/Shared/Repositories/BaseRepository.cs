@@ -25,7 +25,7 @@ public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration conf
     }
 
 
-    public virtual IQueryable<TModel> GetTableNoTracking()
+    public virtual IQueryable<TModel> GetAll()
     {
         return _dbContext.Set<TModel>().AsNoTracking().AsQueryable();
     }
@@ -56,12 +56,6 @@ public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration conf
     public virtual void DeleteRange(ICollection<TModel> entities)
     {
         _dbContext.Set<TModel>().RemoveRange(entities);
-    }
-
-    public async Task<List<TModel>> GetTableAsTracking()
-    {
-        return await _dbContext.Set<TModel>().ToListAsync();
-
     }
 
     public virtual void UpdateRange(ICollection<TModel> entities)

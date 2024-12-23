@@ -14,13 +14,14 @@ namespace Tabibi.Core.Features.JobTimes.Commands.Delete
         public async Task<Result<object>> Handle(DeleteJobTimeCommand request, CancellationToken cancellationToken)
         {
             var clinicId = _currentUserService.GetClinicId();
+            var userId = _currentUserService.GetUserId();
             var jobTime = _unitOfWork.JobTimeRepository.GetById(request.Id);
             if (jobTime is null || jobTime.ClinicId != clinicId)
             {
                 return Result.NotFound<object>(null);
             }
 
-            _unitOfWork.JobTimeRepository.Delete(jobTime);
+            _unitOfWork.JobTimeRepository.Delete(jobTime, userId);
             await _unitOfWork.SaveChangesAsync();
             return Result.Deleted<object>();
         }

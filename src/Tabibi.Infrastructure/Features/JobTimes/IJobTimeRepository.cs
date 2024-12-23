@@ -5,6 +5,6 @@ namespace Tabibi.Infrastructure.Features.JobTimes
 {
     public interface IJobTimeRepository : IBaseRepository<JobTime>
     {
-        IQueryable<TResponse> GetAllByClinicId<TResponse>(Guid clinicId);
+        IQueryable<TResponse> GetByClinicId<TResponse>(Guid clinicId);
     }
 }

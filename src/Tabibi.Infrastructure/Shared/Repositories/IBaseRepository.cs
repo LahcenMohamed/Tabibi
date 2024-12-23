@@ -8,5 +8,5 @@ public interface IBaseRepository<TModel>
     void AddRange(ICollection<TModel> entities);
     void Update(TModel entity);
     void UpdateRange(ICollection<TModel> entities);
-    void Delete(TModel entity);
+    void Delete(TModel entity, Guid deleterId);
 }

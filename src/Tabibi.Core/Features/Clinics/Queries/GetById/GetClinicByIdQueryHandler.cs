@@ -20,7 +20,7 @@ namespace Tabibi.Core.Features.Clinics.Queries.GetById
                 return Result.NotFound<GetClinicByIdQueryResponse>(null);
             }
             var doctor = _unitOfWork.DoctorRepository.GetByClinicId<GetAllDoctorsQueryResponse>(request.Id);
-            var jobTimes = _unitOfWork.JobTimeRepository.GetAllByClinicId<JobTimeResponse>(request.Id).ToList();
+            var jobTimes = _unitOfWork.JobTimeRepository.GetByClinicId<JobTimeResponse>(request.Id).ToList();
 
             var response = new GetClinicByIdQueryResponse { Clinic = clinic, Doctor = doctor, JobTimes = jobTimes };
             return Result.Success(response);

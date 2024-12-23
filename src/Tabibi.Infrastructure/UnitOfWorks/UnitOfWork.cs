@@ -2,6 +2,7 @@
 using Tabibi.Infrastructure.DbContexts;
 using Tabibi.Infrastructure.Features.Clinics;
 using Tabibi.Infrastructure.Features.Doctors;
+using Tabibi.Infrastructure.Features.Employees;
 using Tabibi.Infrastructure.Features.JobTimes;
 
 namespace Reygency.Infrastructure.UnitOfWorks
@@ -11,6 +12,7 @@ namespace Reygency.Infrastructure.UnitOfWorks
         public IClinicRepository ClinicRepository { get; }
         public IDoctorRepository DoctorRepository { get; }
         public IJobTimeRepository JobTimeRepository { get; }
+        public IEmployeeRepository EmployeeRepository { get; }
 
         private readonly TabibiDbContext _context;
         private readonly IConfiguration _configuration;
@@ -22,6 +24,7 @@ namespace Reygency.Infrastructure.UnitOfWorks
             ClinicRepository = new ClinicRepository(context, _configuration);
             DoctorRepository = new DoctorRepository(context, _configuration);
             JobTimeRepository = new JobTimeRepository(context, _configuration);
+            EmployeeRepository = new EmployeeRepository(context, configuration);
         }
 
         public void Dispose()

@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Tabibi.Domain.Shared.Entities;
 using Tabibi.Infrastructure.DbContexts;
 
 namespace Tabibi.Infrastructure.Shared.Repositories;
 
-public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration configuration) : IBaseRepository<TModel> where TModel : class
+public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration configuration) : IBaseRepository<TModel> where TModel : FullAuditedEntity
 {
     #region Vars / Props
 
@@ -49,9 +50,10 @@ public class BaseRepository<TModel>(TabibiDbContext context, IConfiguration conf
 
     }
 
-    public virtual void Delete(TModel entity)
+    public virtual void Delete(TModel entity, Guid deleterId)
     {
-        _dbContext.Set<TModel>().Remove(entity);
+        entity.Delete(deleterId);
+        _dbContext.Set<TModel>().Update(entity);
     }
     public virtual void DeleteRange(ICollection<TModel> entities)
     {

@@ -10,7 +10,7 @@ namespace Tabibi.Infrastructure.Features.JobTimes
     public sealed class JobTimeRepository(TabibiDbContext context, IConfiguration configuration)
         : BaseRepository<JobTime>(context, configuration), IJobTimeRepository
     {
-        public IQueryable<TResponse> GetAllByClinicId<TResponse>(Guid clinicId)
+        public IQueryable<TResponse> GetByClinicId<TResponse>(Guid clinicId)
         {
             string sql = @"SELECT 
                             Id,

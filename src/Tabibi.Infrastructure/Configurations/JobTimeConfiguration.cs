@@ -10,7 +10,7 @@ namespace Tabibi.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<JobTime> builder)
         {
             builder.HasOne<Clinic>()
-                   .WithMany(x => x.jobTimes)
+                   .WithMany(x => x.JobTimes)
                    .HasForeignKey(x => x.ClinicId);
 
             builder.HasQueryFilter(x => !x.IsDeleted);

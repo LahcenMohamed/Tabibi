@@ -19,7 +19,7 @@ namespace Tabibi.Domain.Clinics
         public Guid DoctorId { get; private set; }
         public Doctor Doctor { get; private set; }
         public Guid UserId { get; private set; }
-        public List<JobTime> jobTimes { get; private set; }
+        public List<JobTime> JobTimes { get; private set; }
 
         private Clinic() { }
 

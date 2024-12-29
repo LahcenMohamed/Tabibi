@@ -6,7 +6,7 @@ namespace Tabibi.Infrastructure.Features.Clinics;
 
 public interface IClinicRepository : IBaseRepository<Clinic>
 {
-    IQueryable<TResponse> GetAllByDapper<TResponse>(Specialization specialization, string state, string city);
-    TResponse GetByIdDapper<TResponse>(Guid id);
+    IQueryable<TResponse> GetAllWithDto<TResponse>(Specialization specialization, string state, string city);
+    TResponse GetByIdWithDto<TResponse>(Guid id);
     Clinic GetByUserId(Guid userId);
 }

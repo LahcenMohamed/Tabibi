@@ -11,7 +11,7 @@ namespace Tabibi.Core.Features.Doctors.Queries.GetAll
 
         public async Task<Result<List<GetAllDoctorsQueryResponse>>> Handle(GetAllDoctorsQuery request, CancellationToken cancellationToken)
         {
-            var doctors = _unitOfWork.DoctorRepository.GetAllByDapper<GetAllDoctorsQueryResponse>();
+            var doctors = _unitOfWork.DoctorRepository.GetAllWithDto<GetAllDoctorsQueryResponse>();
             return Result.Success(doctors.ToList());
         }
     }

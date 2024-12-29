@@ -56,7 +56,13 @@ public static class RegisrationServices
                 ValidateAudience = jwtSettings.ValidateAudience,
                 ValidateLifetime = jwtSettings.ValidateLifeTime,
             };
-        });
+        })/*.AddGoogle(options =>
+        {
+            options.ClientId = configuration["Authentication:Google:ClientId"];
+            options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+            options.CallbackPath = "/signin-google"; // تأكد من تطابق هذا مع Google Console
+        })*/;
+
         return services;
     }
 }

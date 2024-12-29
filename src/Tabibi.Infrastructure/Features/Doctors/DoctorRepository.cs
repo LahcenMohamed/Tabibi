@@ -12,7 +12,7 @@ public sealed class DoctorRepository(TabibiDbContext context,
                                      : BaseRepository<Doctor>(context, configuration), IDoctorRepository
 {
 
-    public IQueryable<TResponse> GetAllByDapper<TResponse>()
+    public IQueryable<TResponse> GetAllWithDto<TResponse>()
     {
         string sql = @"SELECT 
                    d.Id AS Id, 

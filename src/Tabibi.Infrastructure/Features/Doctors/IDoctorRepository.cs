@@ -5,7 +5,7 @@ namespace Tabibi.Infrastructure.Features.Doctors
 {
     public interface IDoctorRepository : IBaseRepository<Doctor>
     {
-        IQueryable<TResponse> GetAllByDapper<TResponse>();
+        IQueryable<TResponse> GetAllWithDto<TResponse>();
         TResponse GetByClinicId<TResponse>(Guid clinicId);
     }
 }

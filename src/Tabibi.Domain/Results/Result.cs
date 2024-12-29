@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Text.Json.Serialization;
 
 namespace Tabibi.Domain.Shared.Results
 {
@@ -10,6 +11,7 @@ namespace Tabibi.Domain.Shared.Results
         public string? Error { get; set; }
         public T? Data { get; set; }
 
+        [JsonConstructor]
         internal Result()
         {
 

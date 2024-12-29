@@ -14,7 +14,7 @@ namespace Tabibi.Core.Features.Clinics.Queries.GetById
 
         public async Task<Result<GetClinicByIdQueryResponse>> Handle(GetClinicByIdQuery request, CancellationToken cancellationToken)
         {
-            var clinic = _unitOfWork.ClinicRepository.GetByIdDapper<GetAllClinicsQueryResponse>(request.Id);
+            var clinic = _unitOfWork.ClinicRepository.GetByIdWithDto<GetAllClinicsQueryResponse>(request.Id);
             if (clinic is null)
             {
                 return Result.NotFound<GetClinicByIdQueryResponse>(null);

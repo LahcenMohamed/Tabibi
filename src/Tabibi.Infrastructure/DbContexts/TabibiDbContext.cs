@@ -10,13 +10,18 @@ using Tabibi.Domain.Users;
 
 namespace Tabibi.Infrastructure.DbContexts
 {
-    public sealed class TabibiDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
+    public class TabibiDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>
     {
         public DbSet<Clinic> Clinics { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<JobTime> JobTimes { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeJobTime> EmployeeJobTimes { get; set; }
+        public TabibiDbContext()
+        {
+
+        }
+
         public TabibiDbContext(DbContextOptions options) : base(options)
         {
 

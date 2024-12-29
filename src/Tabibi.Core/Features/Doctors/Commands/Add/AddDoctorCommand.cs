@@ -16,7 +16,7 @@ namespace Tabibi.Core.Features.Doctors.Commands.Add
                                           string Name,
                                           Specialization Specialization,
                                           string ClinicPhoneNumber,
-                                          string SecondPhoneNumber,
+                                          string? SecondPhoneNumber,
                                           string ClinicEmail,
                                           Address Address,
                                           string? MinDescription,

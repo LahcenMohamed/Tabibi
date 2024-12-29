@@ -13,6 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("MyPolicy", corsPolicyBuilder =>
+    {
+        corsPolicyBuilder.AllowAnyOrigin()
+                         .AllowAnyHeader()
+                         .AllowAnyMethod();
+    });
+});
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi}
 builder.Services.AddOpenApi();
 builder.Services.AddRegisrationServices(builder.Configuration)
@@ -20,6 +29,7 @@ builder.Services.AddRegisrationServices(builder.Configuration)
                 .AddCoreDependacies();
 
 var app = builder.Build();
+app.UseCors("MyPolicy");
 
 using (var scope = app.Services.CreateScope())
 {
@@ -48,3 +58,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public partial class Program { }

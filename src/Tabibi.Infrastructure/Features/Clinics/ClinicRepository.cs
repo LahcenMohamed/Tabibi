@@ -16,7 +16,7 @@ IConfiguration configuration)
 {
     private readonly TabibiDbContext _context = context;
 
-    public IQueryable<TResponse> GetAllByDapper<TResponse>(Specialization specialization, string state, string city)
+    public IQueryable<TResponse> GetAllWithDto<TResponse>(Specialization specialization, string state, string city)
     {
         string sql = @"
                     SELECT 
@@ -51,7 +51,7 @@ IConfiguration configuration)
         return clinics;
     }
 
-    public TResponse GetByIdDapper<TResponse>(Guid id)
+    public TResponse GetByIdWithDto<TResponse>(Guid id)
     {
         string sql = @"
                     SELECT 

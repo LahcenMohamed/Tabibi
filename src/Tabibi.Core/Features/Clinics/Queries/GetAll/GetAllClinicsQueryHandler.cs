@@ -12,7 +12,7 @@ namespace Tabibi.Core.Features.Clinics.Queries.GetAll
         public async Task<Result<List<GetAllClinicsQueryResponse>>> Handle(GetAllClinicsQuery request, CancellationToken cancellationToken)
         {
             var clinics = _unitOfWork.ClinicRepository.GetAllWithDto<GetAllClinicsQueryResponse>(request.Specialization, request.State, request.City);
-            return Result.Success(clinics.ToList());
+            return clinics.ToList();
         }
     }
 }

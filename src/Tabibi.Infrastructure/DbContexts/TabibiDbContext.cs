@@ -6,6 +6,8 @@ using Tabibi.Domain.Clinics.Entities.Doctors;
 using Tabibi.Domain.Clinics.Entities.JobTimes;
 using Tabibi.Domain.Employees;
 using Tabibi.Domain.Employees.Entities.EmployeeJobTimes;
+using Tabibi.Domain.Patients;
+using Tabibi.Domain.Patients.Entities;
 using Tabibi.Domain.Users;
 
 namespace Tabibi.Infrastructure.DbContexts
@@ -17,6 +19,12 @@ namespace Tabibi.Infrastructure.DbContexts
         public DbSet<JobTime> JobTimes { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeJobTime> EmployeeJobTimes { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<BloodPressure> BloodPressures { get; set; }
+        public DbSet<BloodSugar> BloodSugars { get; set; }
+        public DbSet<Height> Heights { get; set; }
+        public DbSet<Weight> Weights { get; set; }
+        public DbSet<Temperature> Temperatures { get; set; }
         public TabibiDbContext()
         {
 

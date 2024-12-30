@@ -17,11 +17,24 @@ namespace Tabibi.Domain.Shared.Results
 
         }
 
+        public static implicit operator Result<T>(T value)
+            => Result.Success(value);
+
+        // Add implicit operator to convert from (HttpStatusCode, string) tuple to Result<T>
+        public static implicit operator Result<T>((HttpStatusCode code, string error) error)
+            => Result.Custom<T>(default, error.code, false, error.code.ToString(), error.error);
+
+        // Add implicit operator to convert from string (error message) to Result<T>
+        public static implicit operator Result<T>(string error)
+            => Result.BadRequest<T>(error);
 
     }
 
     public static class Result
     {
+        public static (HttpStatusCode, string) NotFound(string? error = null)
+            => (HttpStatusCode.NotFound, error ?? "NotFound");
+
         public static Result<T> Success<T>(T data)
         {
             return new Result<T>()
@@ -44,6 +57,7 @@ namespace Tabibi.Domain.Shared.Results
                 Error = null
             };
         }
+
         public static Result<T> Deleted<T>()
         {
             return new Result<T>()
@@ -85,17 +99,6 @@ namespace Tabibi.Domain.Shared.Results
                 StatusCode = HttpStatusCode.UnprocessableEntity,
                 Succeeded = false,
                 Message = "UnprocessableEntity",
-                Error = error
-            };
-        }
-        public static Result<T> NotFound<T>(string? error)
-        {
-            return new Result<T>()
-            {
-                Data = default(T),
-                StatusCode = HttpStatusCode.NotFound,
-                Succeeded = false,
-                Message = "NotFound",
                 Error = error
             };
         }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Folder Include="Features\Authenfications\Queries\" />
     <Folder Include="Features\Clinics\Commands\" />
+    <Folder Include="Features\Patients\Queries\" />
     <Folder Include="Features\Users\Queries\Shared\" />
   </ItemGroup>
 

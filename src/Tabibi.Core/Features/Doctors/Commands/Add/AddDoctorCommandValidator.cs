@@ -16,7 +16,7 @@ namespace Tabibi.Core.Features.Doctors.Commands.Add
             RuleFor(x => x.Address.State).NotNull().NotEmpty().MaximumLength(100);
             RuleFor(x => x.Address.City).NotNull().NotEmpty().MaximumLength(100);
             RuleFor(x => x.Address.Street).NotNull().NotEmpty().MaximumLength(100);
-            RuleFor(x => x.Address.Note).MaximumLength(150);
+            RuleFor(x => x.Address.UrlOnMap).MaximumLength(150);
 
             RuleFor(x => x.ClinicPhoneNumber).NotNull().NotEmpty().Matches("[0-9]").MaximumLength(20);
             RuleFor(x => x.SecondPhoneNumber).Matches("[0-9]").MaximumLength(20);

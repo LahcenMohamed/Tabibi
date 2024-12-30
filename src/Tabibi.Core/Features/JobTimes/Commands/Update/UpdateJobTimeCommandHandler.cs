@@ -19,13 +19,13 @@ namespace Tabibi.Core.Features.JobTimes.Commands.Update
 
             if (jobTime is null || jobTime.ClinicId != clinicId)
             {
-                return Result.NotFound<string>("Job Time Not Found");
+                return Result.NotFound("Job Time Not Found");
             }
 
             jobTime.Update(request.Day, request.StartTime, request.EndTime, userId);
             _unitOfWork.JobTimeRepository.Update(jobTime);
             await _unitOfWork.SaveChangesAsync();
-            return Result.Success<string>(null);
+            return Result.Success(string.Empty);
         }
     }
 }

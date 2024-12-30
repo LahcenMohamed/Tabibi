@@ -14,7 +14,7 @@ namespace Tabibi.Infrastructure.Configurations
                 addressBuilder.Property(x => x.State).IsRequired().HasMaxLength(100);
                 addressBuilder.Property(x => x.City).IsRequired().HasMaxLength(100);
                 addressBuilder.Property(x => x.Street).IsRequired().HasMaxLength(100);
-                addressBuilder.Property(x => x.Note).HasMaxLength(150);
+                addressBuilder.Property(x => x.UrlOnMap).HasMaxLength(150);
             });
 
             builder.HasOne(x => x.Doctor)

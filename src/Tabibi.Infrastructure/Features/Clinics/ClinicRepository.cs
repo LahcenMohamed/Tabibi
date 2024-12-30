@@ -30,7 +30,7 @@ IConfiguration configuration)
                         c.Address_State AS State, 
                         c.Address_City AS City, 
                         c.Address_Street AS Street, 
-                        c.Address_Note AS Note,
+                        c.Address_UrlOnMap AS UrlOnMap,
                         c.PhotoUrl, 
                         c.DoctorId, 
                         c.UserId
@@ -65,7 +65,7 @@ IConfiguration configuration)
                         c.Address_State AS State, 
                         c.Address_City AS City, 
                         c.Address_Street AS Street, 
-                        c.Address_Note AS Note,
+                        c.Address_UrlOnMap AS UrlOnMap,
                         c.PhotoUrl, 
                         c.DoctorId, 
                         c.UserId

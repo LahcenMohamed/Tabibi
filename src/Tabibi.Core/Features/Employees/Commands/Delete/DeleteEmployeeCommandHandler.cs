@@ -19,7 +19,7 @@ namespace Tabibi.Core.Features.Employees.Commands.Delete
             var employee = _unitOfWork.EmployeeRepository.GetById(request.Id);
             if (employee is null || employee.ClinicId != clinicId)
             {
-                return Result.NotFound<object>(null);
+                return Result.NotFound();
             }
 
             _unitOfWork.EmployeeRepository.Delete(employee, userId);

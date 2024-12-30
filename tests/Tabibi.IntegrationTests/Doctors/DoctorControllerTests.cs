@@ -63,7 +63,7 @@ namespace Tabibi.IntegrationTests.Doctors
                     State: "New York",
                     City: "New York City",
                     Street: "123 Main Street",
-                    Note: "Near Central Park"
+                    UrlOnMap: "Near Central Park"
                 ),
                 MinDescription: "A brief description about the doctor",
                 UserId: userId);
@@ -111,7 +111,7 @@ namespace Tabibi.IntegrationTests.Doctors
         }
 
         [Fact]
-        public async Task Create_Doctor_WithInvalidUserId_ShouldReturnBadRequest()
+        public async Task Create_Doctor_WithInvalidUserId_ShouldReturnNotFound()
         {
 
             var createDoctorRequest = new AddDoctorCommand(
@@ -134,7 +134,7 @@ namespace Tabibi.IntegrationTests.Doctors
                     State: "New York",
                     City: "New York City",
                     Street: "123 Main Street",
-                    Note: "Near Central Park"
+                    UrlOnMap: "Near Central Park"
                 ),
                 MinDescription: "A brief description about the doctor",
                 UserId: Guid.CreateVersion7());
@@ -143,7 +143,7 @@ namespace Tabibi.IntegrationTests.Doctors
             var response = await _client.PostAsJsonAsync("/api/clinic/doctors", createDoctorRequest);
 
             // Assert
-            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
             var jsonResponse = await response.Content.ReadFromJsonAsync<Result<Guid?>>();
             jsonResponse.Succeeded.Should().BeFalse();
             jsonResponse.Error.Should().NotBeEmpty();

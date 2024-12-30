@@ -4,6 +4,12 @@ using Tabibi.Infrastructure.Features.Clinics;
 using Tabibi.Infrastructure.Features.Doctors;
 using Tabibi.Infrastructure.Features.Employees;
 using Tabibi.Infrastructure.Features.JobTimes;
+using Tabibi.Infrastructure.Features.MedicalFile.BloodPressures;
+using Tabibi.Infrastructure.Features.MedicalFile.BloodSugars;
+using Tabibi.Infrastructure.Features.MedicalFile.Heights;
+using Tabibi.Infrastructure.Features.MedicalFile.Temperatures;
+using Tabibi.Infrastructure.Features.MedicalFile.Weights;
+using Tabibi.Infrastructure.Features.Patients;
 
 namespace Reygency.Infrastructure.UnitOfWorks
 {
@@ -13,6 +19,12 @@ namespace Reygency.Infrastructure.UnitOfWorks
         public IDoctorRepository DoctorRepository { get; }
         public IJobTimeRepository JobTimeRepository { get; }
         public IEmployeeRepository EmployeeRepository { get; }
+        public IPatientRepository PatientRepository { get; }
+        public IBloodPressureRepository BloodPressureRepository { get; }
+        public IBloodSugarRepository BloodSugarRepository { get; }
+        public IHeightRepository HeightRepository { get; }
+        public IWeightRepository WeightRepository { get; }
+        public ITemperatureRepository TemperatureRepository { get; }
 
         private readonly TabibiDbContext _context;
         private readonly IConfiguration _configuration;
@@ -21,10 +33,18 @@ namespace Reygency.Infrastructure.UnitOfWorks
         {
             _context = context;
             _configuration = configuration;
+
+            // Initialize repositories
             ClinicRepository = new ClinicRepository(context, _configuration);
             DoctorRepository = new DoctorRepository(context, _configuration);
             JobTimeRepository = new JobTimeRepository(context, _configuration);
             EmployeeRepository = new EmployeeRepository(context, configuration);
+            PatientRepository = new PatientRepository(context, _configuration);
+            BloodPressureRepository = new BloodPressureRepository(context, _configuration);
+            BloodSugarRepository = new BloodSugarRepository(context, _configuration);
+            HeightRepository = new HeightRepository(context, _configuration);
+            WeightRepository = new WeightRepository(context, _configuration);
+            TemperatureRepository = new TemperatureRepository(context, _configuration);
         }
 
         public void Dispose()

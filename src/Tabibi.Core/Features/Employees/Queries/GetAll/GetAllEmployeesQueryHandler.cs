@@ -14,7 +14,7 @@ namespace Tabibi.Core.Features.Employees.Queries.GetAll
         {
             var clinicId = _currentUserService.GetClinicId();
             var lst = _unitOfWork.EmployeeRepository.GetByClinicId<GetAllEmployeesQueryResponse>(clinicId);
-            return Result.Success(lst.ToList());
+            return lst.ToList();
         }
     }
 }

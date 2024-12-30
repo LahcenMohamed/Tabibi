@@ -18,7 +18,7 @@ namespace Tabibi.Core.Features.JobTimes.Commands.Delete
             var jobTime = _unitOfWork.JobTimeRepository.GetById(request.Id);
             if (jobTime is null || jobTime.ClinicId != clinicId)
             {
-                return Result.NotFound<object>(null);
+                return Result.NotFound();
             }
 
             _unitOfWork.JobTimeRepository.Delete(jobTime, userId);

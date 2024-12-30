@@ -17,13 +17,13 @@ namespace Tabibi.Core.Features.Clinics.Queries.GetById
             var clinic = _unitOfWork.ClinicRepository.GetByIdWithDto<GetAllClinicsQueryResponse>(request.Id);
             if (clinic is null)
             {
-                return Result.NotFound<GetClinicByIdQueryResponse>(null);
+                return Result.NotFound();
             }
             var doctor = _unitOfWork.DoctorRepository.GetByClinicId<GetAllDoctorsQueryResponse>(request.Id);
             var jobTimes = _unitOfWork.JobTimeRepository.GetByClinicId<JobTimeResponse>(request.Id).ToList();
 
             var response = new GetClinicByIdQueryResponse { Clinic = clinic, Doctor = doctor, JobTimes = jobTimes };
-            return Result.Success(response);
+            return response;
         }
     }
 }

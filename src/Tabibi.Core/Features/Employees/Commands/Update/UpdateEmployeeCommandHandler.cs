@@ -18,7 +18,7 @@ namespace Tabibi.Core.Features.Employees.Commands.Update
             var employee = _unitOfWork.EmployeeRepository.GetById(request.Id);
             if (employee is null || employee.ClinicId != clinicId)
             {
-                return Result.NotFound<Guid>(null);
+                return Result.NotFound();
             }
 
             employee.Update(request.FullName,
@@ -31,7 +31,7 @@ namespace Tabibi.Core.Features.Employees.Commands.Update
                             userId);
             _unitOfWork.EmployeeRepository.Update(employee);
             await _unitOfWork.SaveChangesAsync();
-            return Result.Created(employee.Id);
+            return employee.Id;
         }
     }
 }

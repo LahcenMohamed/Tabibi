@@ -46,16 +46,21 @@ namespace Reygency.Infrastructure.Features.Authenifactions
                         (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5));
                         return Result.Success(accessToken);
                     }
-                    else
+                    else if (role == "Doctor")
                     {
                         var clinic = _unitOfWork.ClinicRepository.GetByUserId(user.Id);
                         (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5), clinic.Id);
                         return Result.Success(accessToken);
                     }
+                    else
+                    {
+                        (var token, var accessToken) = await GetToken(user, DateTime.Now.AddMonths(5));
+                        return Result.Success(accessToken);
+                    }
                 }
                 return Result.Unauthorized<string>("uncorrect password");
             }
-            return Result.NotFound<string>($"this user name or email {userNameOrEmail} doesnot exist");
+            return Result.NotFound($"this user name or email {userNameOrEmail} doesnot exist");
         }
 
         public async Task<Result<string>> SignupAsync(string userName, string password, string email)
@@ -69,8 +74,6 @@ namespace Reygency.Infrastructure.Features.Authenifactions
             var result = await userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                await userManager.AddToRoleAsync(user, "Doctor");
-
                 Random random = new Random();
                 user.EmailCode = random.Next(111111, 1000000).ToString();
 

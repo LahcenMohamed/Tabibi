@@ -55,7 +55,7 @@ namespace Tabibi.Infrastructure.Features.Users
                 return Result.BadRequest<string>("code is encorrect");
             }
 
-            return Result.NotFound<string>($"this user name or email {emailOrUserName} doesnot exist");
+            return Result.NotFound($"this user name or email {emailOrUserName} doesnot exist");
 
         }
 
@@ -64,7 +64,7 @@ namespace Tabibi.Infrastructure.Features.Users
             var user = GetById(Id);
             if (user is null)
             {
-                return Result.NotFound<string>("Id does not exist");
+                return Result.NotFound("Id does not exist");
             }
             await _unitOfWork.SaveChangesAsync();
             var result = await _userManager.DeleteAsync(user);
@@ -142,7 +142,7 @@ namespace Tabibi.Infrastructure.Features.Users
                 return Result.BadRequest<string>($"code {code} is ancorrect");
             }
 
-            return Result.NotFound<string>($"this user name or email {userNameOrEmail} doesnot exist");
+            return Result.NotFound($"this user name or email {userNameOrEmail} doesnot exist");
         }
         public async Task<Result<string>> SendForgetPasswordCodeAsync(string userNameOrEmail)
         {
@@ -169,7 +169,7 @@ namespace Tabibi.Infrastructure.Features.Users
                 }
                 return Result.Success(user.Id.ToString());
             }
-            return Result.NotFound<string>($"this user name or email {userNameOrEmail} doesnot exist");
+            return Result.NotFound($"this user name or email {userNameOrEmail} doesnot exist");
         }
         private bool isEmail(string email)
         {

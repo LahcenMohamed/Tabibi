@@ -5,6 +5,6 @@
         public Guid Id { get; set; }
         public decimal Value { get; set; }
         public string? Notes { get; set; }
-        public DateTime? LastModifiedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.BloodPressures
                             MaxValue,
                             Notes,
                             IsDeleted,
-                            LastModifiedAt,
+                            CreatedAt,
                             PatientId
                            FROM BloodPressures
                            WHERE IsDeleted = 0

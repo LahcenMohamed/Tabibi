@@ -17,7 +17,7 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.Temperatures
                             Value,
                             Notes,
                             IsDeleted,
-                            LastModifiedAt,
+                            CreatedAt,
                             PatientId
                            FROM Temperatures
                            WHERE IsDeleted = 0

@@ -17,7 +17,7 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.Heights
                             Value,
                             Notes,
                             IsDeleted,
-                            LastModifiedAt,
+                            CreatedAt,
                             PatientId
                            FROM Heights
                            WHERE IsDeleted = 0

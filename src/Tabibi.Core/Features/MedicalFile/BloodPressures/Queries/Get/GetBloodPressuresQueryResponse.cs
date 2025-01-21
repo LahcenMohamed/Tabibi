@@ -1,11 +1,9 @@
-﻿namespace Tabibi.Core.Features.MedicalFile.BloodPressures.Queries.Get
+﻿using Tabibi.Core.Features.MedicalFile.Abstractions;
+
+namespace Tabibi.Core.Features.MedicalFile.BloodPressures.Queries.Get
 {
-    public sealed class GetBloodPressuresQueryResponse
+    public sealed class GetBloodPressuresQueryResponse : GetMedicalFileResponse
     {
-        public Guid Id { get; set; }
-        public decimal MinValue { get; set; }
-        public decimal MaxValue { get; set; }
-        public string? Notes { get; set; }
-        public DateTime? LastModifiedAt { get; set; }
+
     }
 }

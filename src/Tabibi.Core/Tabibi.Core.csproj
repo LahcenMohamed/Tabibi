@@ -35,6 +35,11 @@
   <ItemGroup>
     <Folder Include="Features\Authenfications\Queries\" />
     <Folder Include="Features\Clinics\Commands\" />
+    <Folder Include="Features\MedicalHistory\Addictions\" />
+    <Folder Include="Features\MedicalHistory\Allergies\" />
+    <Folder Include="Features\MedicalHistory\ChronicDiseases\" />
+    <Folder Include="Features\MedicalHistory\GeneticDiseases\" />
+    <Folder Include="Features\MedicalHistory\Diseases\" />
     <Folder Include="Features\Patients\Queries\" />
     <Folder Include="Features\Users\Queries\Shared\" />
   </ItemGroup>

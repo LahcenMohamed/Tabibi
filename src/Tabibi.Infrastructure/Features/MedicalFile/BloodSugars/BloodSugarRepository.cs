@@ -17,7 +17,7 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.BloodSugars
                             Value,
                             Notes,
                             IsDeleted,
-                            LastModifiedAt,
+                            CreatedAt,
                             PatientId
                            FROM BloodSugars
                            WHERE IsDeleted = 0

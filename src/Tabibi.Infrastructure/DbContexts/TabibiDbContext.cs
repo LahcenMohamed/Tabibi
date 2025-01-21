@@ -25,6 +25,11 @@ namespace Tabibi.Infrastructure.DbContexts
         public DbSet<Height> Heights { get; set; }
         public DbSet<Weight> Weights { get; set; }
         public DbSet<Temperature> Temperatures { get; set; }
+        public DbSet<Disease> Diseases { get; set; }
+        public DbSet<GeneticDisease> GeneticDiseases { get; set; }
+        public DbSet<Addiction> Addictions { get; set; }
+        public DbSet<Allergy> Allergies { get; set; }
+        public DbSet<ChronicDisease> ChronicDiseases { get; set; }
         public TabibiDbContext()
         {
 

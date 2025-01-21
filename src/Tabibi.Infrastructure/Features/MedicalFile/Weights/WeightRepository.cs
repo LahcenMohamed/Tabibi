@@ -17,7 +17,7 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.Weights
                             Value,
                             Notes,
                             IsDeleted,
-                            LastModifiedAt,
+                            CreatedAt,
                             PatientId
                            FROM Weights
                            WHERE IsDeleted = 0

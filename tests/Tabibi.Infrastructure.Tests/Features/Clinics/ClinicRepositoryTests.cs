@@ -20,7 +20,7 @@ public class ClinicRepositoryTests
         var defaultConnectionSection = new Mock<IConfigurationSection>();
 
         connectionStringsSection
-            .Setup(x => x.GetSection("DefaultConnection"))
+            .Setup(x => x.GetSection("DefaultConnectionString"))
             .Returns(defaultConnectionSection.Object);
         defaultConnectionSection
             .Setup(x => x.Value)

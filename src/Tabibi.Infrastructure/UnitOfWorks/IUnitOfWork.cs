@@ -7,6 +7,11 @@ using Tabibi.Infrastructure.Features.MedicalFile.BloodSugars;
 using Tabibi.Infrastructure.Features.MedicalFile.Heights;
 using Tabibi.Infrastructure.Features.MedicalFile.Temperatures;
 using Tabibi.Infrastructure.Features.MedicalFile.Weights;
+using Tabibi.Infrastructure.Features.MedicalHistory.Addictions;
+using Tabibi.Infrastructure.Features.MedicalHistory.Allergies;
+using Tabibi.Infrastructure.Features.MedicalHistory.ChronicDiseases;
+using Tabibi.Infrastructure.Features.MedicalHistory.Diseases;
+using Tabibi.Infrastructure.Features.MedicalHistory.GeneticDiseases;
 using Tabibi.Infrastructure.Features.Patients;
 
 namespace Reygency.Infrastructure.UnitOfWorks
@@ -23,6 +28,11 @@ namespace Reygency.Infrastructure.UnitOfWorks
         public IHeightRepository HeightRepository { get; }
         public IWeightRepository WeightRepository { get; }
         public ITemperatureRepository TemperatureRepository { get; }
+        public IAddictionRepository AddictionRepository { get; }
+        public IAllergyRepository AllergyRepository { get; }
+        public IGeneticDiseaseRepository GeneticDiseaseRepository { get; }
+        public IChronicDiseaseRepository ChronicDiseaseRepository { get; }
+        public IDiseaseRepository DiseaseRepository { get; }
 
         Task<int> SaveChangesAsync();
     }

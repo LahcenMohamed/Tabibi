@@ -28,12 +28,4 @@
     <ProjectReference Include="..\Tabibi.Domain\Tabibi.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\MedicalHistory\Addictions\" />
-    <Folder Include="Features\MedicalHistory\Allergies\" />
-    <Folder Include="Features\MedicalHistory\ChronicDiseases\" />
-    <Folder Include="Features\MedicalHistory\Diseases\" />
-    <Folder Include="Features\MedicalHistory\GeneticDiseases\" />
-  </ItemGroup>
-
 </Project>

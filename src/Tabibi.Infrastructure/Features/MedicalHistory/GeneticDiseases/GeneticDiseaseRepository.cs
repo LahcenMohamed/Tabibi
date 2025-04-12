@@ -1,0 +1,29 @@
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using Tabibi.Domain.Patients.Entities;
+using Tabibi.Infrastructure.DbContexts;
+using Tabibi.Infrastructure.Shared.Repositories;
+
+namespace Tabibi.Infrastructure.Features.MedicalHistory.GeneticDiseases
+{
+    public sealed class GeneticDiseaseRepository(TabibiDbContext context, IConfiguration configuration)
+        : BaseRepository<GeneticDisease>(context, configuration), IGeneticDiseaseRepository
+    {
+        public IQueryable<TResponse> GetByPatientId<TResponse>(Guid patientId)
+        {
+            string sql = @"SELECT 
+                            Id,
+                            Name,
+                            CreatedAt,
+                            PatientId
+                           FROM GeneticDiseases
+                           WHERE IsDeleted = 0
+                           AND PatientId = @patientId";
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+            var lst = connection.Query<TResponse>(sql, new { patientId }).AsQueryable();
+            return lst;
+        }
+    }
+}

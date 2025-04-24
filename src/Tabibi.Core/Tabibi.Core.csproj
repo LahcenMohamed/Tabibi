@@ -43,16 +43,11 @@
     <Folder Include="Features\MedicalHistory\Allergies\Queries\GetAll\" />
     <Folder Include="Features\MedicalHistory\ChronicDiseases\Commands\Add\" />
     <Folder Include="Features\MedicalHistory\ChronicDiseases\Commands\Delete\" />
-    <Folder Include="Features\MedicalHistory\ChronicDiseases\Commands\Update\" />
     <Folder Include="Features\MedicalHistory\ChronicDiseases\Queries\GetAll\" />
     <Folder Include="Features\MedicalHistory\Diseases\Commands\Add\" />
     <Folder Include="Features\MedicalHistory\Diseases\Commands\Delete\" />
     <Folder Include="Features\MedicalHistory\Diseases\Commands\Update\" />
     <Folder Include="Features\MedicalHistory\Diseases\Queries\GetAll\" />
-    <Folder Include="Features\MedicalHistory\GeneticDiseases\Commands\Add\" />
-    <Folder Include="Features\MedicalHistory\GeneticDiseases\Commands\Delete\" />
-    <Folder Include="Features\MedicalHistory\GeneticDiseases\Commands\Update\" />
-    <Folder Include="Features\MedicalHistory\GeneticDiseases\Queries\GetAll\" />
     <Folder Include="Features\Patients\Queries\" />
     <Folder Include="Features\Users\Queries\Shared\" />
   </ItemGroup>

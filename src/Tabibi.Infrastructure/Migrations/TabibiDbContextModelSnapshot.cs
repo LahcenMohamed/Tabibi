@@ -214,7 +214,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Clinics");
+                    b.ToTable("Clinics", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Clinics.Entities.Doctors.Doctor", b =>
@@ -272,7 +272,7 @@ namespace Tabibi.Infrastructure.Migrations
                     b.HasIndex("ClinicId")
                         .IsUnique();
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Clinics.Entities.JobTimes.JobTime", b =>
@@ -318,7 +318,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("ClinicId");
 
-                    b.ToTable("JobTimes");
+                    b.ToTable("JobTimes", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Employees.Employee", b =>
@@ -376,7 +376,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("ClinicId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Employees.Entities.EmployeeJobTimes.EmployeeJobTime", b =>
@@ -422,7 +422,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("EmployeeJobTimes");
+                    b.ToTable("EmployeeJobTimes", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Addiction", b =>
@@ -464,7 +464,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Addictions");
+                    b.ToTable("Addictions", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Allergy", b =>
@@ -506,7 +506,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Allergies");
+                    b.ToTable("Allergies", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.BloodPressure", b =>
@@ -552,7 +552,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("BloodPressures");
+                    b.ToTable("BloodPressures", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.BloodSugar", b =>
@@ -595,7 +595,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("BloodSugars");
+                    b.ToTable("BloodSugars", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.ChronicDisease", b =>
@@ -637,7 +637,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("ChronicDiseases");
+                    b.ToTable("ChronicDiseases", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Disease", b =>
@@ -685,7 +685,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Diseases");
+                    b.ToTable("Diseases", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.GeneticDisease", b =>
@@ -727,7 +727,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("GeneticDiseases");
+                    b.ToTable("GeneticDiseases", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Height", b =>
@@ -770,7 +770,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Heights");
+                    b.ToTable("Heights", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Temperature", b =>
@@ -813,7 +813,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Temperatures");
+                    b.ToTable("Temperatures", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Entities.Weight", b =>
@@ -856,7 +856,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Weights");
+                    b.ToTable("Weights", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Patients.Patient", b =>
@@ -921,7 +921,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Patients");
+                    b.ToTable("Patients", (string)null);
                 });
 
             modelBuilder.Entity("Tabibi.Domain.Users.ApplicationUser", b =>
@@ -1081,7 +1081,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                             b1.HasKey("ClinicId");
 
-                            b1.ToTable("Clinics");
+                            b1.ToTable("Clinics", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ClinicId");
@@ -1120,7 +1120,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                             b1.HasKey("DoctorId");
 
-                            b1.ToTable("Doctors");
+                            b1.ToTable("Doctors", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("DoctorId");
@@ -1170,7 +1170,7 @@ namespace Tabibi.Infrastructure.Migrations
 
                             b1.HasKey("EmployeeId");
 
-                            b1.ToTable("Employees");
+                            b1.ToTable("Employees", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("EmployeeId");

@@ -35,8 +35,4 @@
     <ProjectReference Include="..\Tabibi.Infrastructure\Tabibi.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Patients\MedicalHistory\" />
-  </ItemGroup>
-
 </Project>

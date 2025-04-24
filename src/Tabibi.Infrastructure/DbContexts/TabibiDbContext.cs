@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Tabibi.Domain.Clinics;
 using Tabibi.Domain.Clinics.Entities.Doctors;
 using Tabibi.Domain.Clinics.Entities.JobTimes;
@@ -44,6 +45,17 @@ namespace Tabibi.Infrastructure.DbContexts
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TabibiDbContext).Assembly);
             base.OnModelCreating(builder);
+        }
+    }
+
+     public class TabibiDbContextFactory : IDesignTimeDbContextFactory<TabibiDbContext>
+    {
+        public TabibiDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<TabibiDbContext>();
+            optionsBuilder.UseNpgsql("Server=localhost; Port=5432; Database=TabibiDb; User Id=postgres; Password=0558;");
+
+            return new TabibiDbContext(optionsBuilder.Options);
         }
     }
 }

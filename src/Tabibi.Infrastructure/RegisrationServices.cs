@@ -15,7 +15,7 @@ public static class RegisrationServices
     public static IServiceCollection AddRegisrationServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<TabibiDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionString")));
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnectionString")));
 
         services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
         {

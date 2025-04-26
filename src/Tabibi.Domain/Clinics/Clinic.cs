@@ -8,8 +8,8 @@ namespace Tabibi.Domain.Clinics
 {
     public sealed class Clinic : FullAuditedAggregateRoot
     {
-        public string Name { get; set; }
-        public string? MinDescription { get; set; }
+        public string Name { get; private set; }
+        public string? MinDescription { get; private set; }
         public Specialization Specialization { get; private set; }
         public string PhoneNumber { get; private set; }
         public string? SecondPhoneNumber { get; private set; }

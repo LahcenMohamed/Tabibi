@@ -1,4 +1,5 @@
-﻿using Tabibi.Infrastructure.Features.Clinics;
+﻿using Tabibi.Infrastructure.Features.Appointments;
+using Tabibi.Infrastructure.Features.Clinics;
 using Tabibi.Infrastructure.Features.Doctors;
 using Tabibi.Infrastructure.Features.Employees;
 using Tabibi.Infrastructure.Features.JobTimes;
@@ -13,6 +14,7 @@ using Tabibi.Infrastructure.Features.MedicalHistory.ChronicDiseases;
 using Tabibi.Infrastructure.Features.MedicalHistory.Diseases;
 using Tabibi.Infrastructure.Features.MedicalHistory.GeneticDiseases;
 using Tabibi.Infrastructure.Features.Patients;
+using Tabibi.Infrastructure.Features.WorkSchedules;
 
 namespace Reygency.Infrastructure.UnitOfWorks
 {
@@ -33,6 +35,8 @@ namespace Reygency.Infrastructure.UnitOfWorks
         public IGeneticDiseaseRepository GeneticDiseaseRepository { get; }
         public IChronicDiseaseRepository ChronicDiseaseRepository { get; }
         public IDiseaseRepository DiseaseRepository { get; }
+        public IWorkScheduleRepository WorkScheduleRepository { get; }
+        public IAppointmentRepository AppointmentRepository { get; }
 
         Task<int> SaveChangesAsync();
     }

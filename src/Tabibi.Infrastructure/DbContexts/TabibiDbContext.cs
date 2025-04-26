@@ -10,6 +10,8 @@ using Tabibi.Domain.Employees.Entities.EmployeeJobTimes;
 using Tabibi.Domain.Patients;
 using Tabibi.Domain.Patients.Entities;
 using Tabibi.Domain.Users;
+using Tabibi.Domain.WorkSchedules;
+using Tabibi.Domain.WorkSchedules.Entities.Appointments;
 
 namespace Tabibi.Infrastructure.DbContexts
 {
@@ -31,6 +33,8 @@ namespace Tabibi.Infrastructure.DbContexts
         public DbSet<Addiction> Addictions { get; set; }
         public DbSet<Allergy> Allergies { get; set; }
         public DbSet<ChronicDisease> ChronicDiseases { get; set; }
+        public DbSet<WorkSchedule> WorkSchedules { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
         public TabibiDbContext()
         {
 
@@ -45,6 +49,16 @@ namespace Tabibi.Infrastructure.DbContexts
         {
             builder.ApplyConfigurationsFromAssembly(typeof(TabibiDbContext).Assembly);
             base.OnModelCreating(builder);
+            foreach (var entityType in builder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(DateTime))
+                    {
+                        property.SetColumnType("timestamp without time zone");
+                    }
+                }
+            }
         }
     }
 

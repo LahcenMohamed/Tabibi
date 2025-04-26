@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Tabibi.Infrastructure.DbContexts;
+using Tabibi.Infrastructure.Features.Appointments;
 using Tabibi.Infrastructure.Features.Clinics;
 using Tabibi.Infrastructure.Features.Doctors;
 using Tabibi.Infrastructure.Features.Employees;
@@ -15,6 +16,7 @@ using Tabibi.Infrastructure.Features.MedicalHistory.ChronicDiseases;
 using Tabibi.Infrastructure.Features.MedicalHistory.Diseases;
 using Tabibi.Infrastructure.Features.MedicalHistory.GeneticDiseases;
 using Tabibi.Infrastructure.Features.Patients;
+using Tabibi.Infrastructure.Features.WorkSchedules;
 
 namespace Reygency.Infrastructure.UnitOfWorks
 {
@@ -35,6 +37,8 @@ namespace Reygency.Infrastructure.UnitOfWorks
         public IGeneticDiseaseRepository GeneticDiseaseRepository { get; }
         public IChronicDiseaseRepository ChronicDiseaseRepository { get; }
         public IDiseaseRepository DiseaseRepository { get; }
+        public IWorkScheduleRepository WorkScheduleRepository { get; }
+        public IAppointmentRepository AppointmentRepository { get; }
 
         private readonly TabibiDbContext _context;
         private readonly IConfiguration _configuration;
@@ -60,6 +64,8 @@ namespace Reygency.Infrastructure.UnitOfWorks
             GeneticDiseaseRepository = new GeneticDiseaseRepository(context, _configuration);
             ChronicDiseaseRepository = new ChronicDiseaseRepository(context, _configuration);
             DiseaseRepository = new DiseaseRepository(context, _configuration);
+            WorkScheduleRepository = new WorkScheduleRepository(context, _configuration);
+            AppointmentRepository = new AppointmentRepository(context, _configuration);
         }
 
         public void Dispose()

@@ -1,11 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="MailKit" Version="4.8.0" />
@@ -28,11 +26,9 @@
     <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="Testcontainers.MsSql" Version="4.1.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Tabibi.Core\Tabibi.Core.csproj" />
     <ProjectReference Include="..\Tabibi.Domain\Tabibi.Domain.csproj" />
     <ProjectReference Include="..\Tabibi.Infrastructure\Tabibi.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>

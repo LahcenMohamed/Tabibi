@@ -19,7 +19,7 @@ namespace Tabibi.Infrastructure.Configurations
             .WithMany()
             .HasForeignKey(x => x.WorkScheduleId);
 
-            builder.HasOne<Patient>()
+            builder.HasOne(x => x.Patient)
             .WithMany()
             .HasForeignKey(x => x.PatientId);
         }

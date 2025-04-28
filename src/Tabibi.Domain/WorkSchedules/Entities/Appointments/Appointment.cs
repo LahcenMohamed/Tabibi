@@ -1,4 +1,5 @@
 using System;
+using Tabibi.Domain.Patients;
 using Tabibi.Domain.Shared.Entities;
 
 namespace Tabibi.Domain.WorkSchedules.Entities.Appointments
@@ -9,6 +10,7 @@ namespace Tabibi.Domain.WorkSchedules.Entities.Appointments
         public AppointmentStatus Status { get; private set; }
         public Guid PatientId { get; private set; }
         public Guid WorkScheduleId { get; private set; }
+        public Patient Patient { get; private set; }
 
         private Appointment() { }
 
@@ -25,10 +27,23 @@ namespace Tabibi.Domain.WorkSchedules.Entities.Appointments
             };
         }
 
-        public void Update(int number, AppointmentStatus status, Guid userId)
+        public void Update(int number, Guid workScheduleId, Guid userId)
         {
             Number = number;
-            Status = status;
+            WorkScheduleId = workScheduleId;
+            LastModifiedAt = DateTime.Now;
+            LastModifiedBy = userId;
+        }
+
+        public void Confirm(Guid userId)
+        {
+            Status = AppointmentStatus.Confirmed;
+            LastModifiedAt = DateTime.Now;
+            LastModifiedBy = userId;
+        }
+        public void Cancel(Guid userId)
+        {
+            Status = AppointmentStatus.Canceld;
             LastModifiedAt = DateTime.Now;
             LastModifiedBy = userId;
         }

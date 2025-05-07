@@ -5,6 +5,7 @@ using Tabibi.Core.Features.WorkSchedules.Commands.Add;
 using Tabibi.Core.Features.WorkSchedules.Commands.Delete;
 using Tabibi.Core.Features.WorkSchedules.Commands.Update;
 using Tabibi.Core.Features.WorkSchedules.Queries.GetAll;
+using Tabibi.Core.Features.WorkSchedules.Queries.GetByClinic;
 
 namespace Tabibi.Api.Controllers.Clinics;
 
@@ -19,14 +20,22 @@ public class WorkScheduleController : AppControllerBase
         var response = await Mediator.Send(command);
         return NewResult(response);
     }
+
+    [HttpGet("clinic/{clinicId:guid}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetByClinicId(Guid clinicId)
+    {
+        var response = await Mediator.Send(new GetWorkSchedulesByClinicQuery(clinicId));
+        return NewResult(response);
+    }
     [HttpPut]
-    public async Task<IActionResult> Create(UpdateWorkScheduleCommand command)
+    public async Task<IActionResult> Update(UpdateWorkScheduleCommand command)
     {
         var response = await Mediator.Send(command);
         return NewResult(response);
     }
     [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> Create(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
         var response = await Mediator.Send(new DeleteWorkScheduleCommand(id));
         return NewResult(response);

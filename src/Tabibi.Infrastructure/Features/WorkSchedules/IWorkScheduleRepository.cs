@@ -9,6 +9,6 @@ namespace Tabibi.Infrastructure.Features.WorkSchedules
 {
     public interface IWorkScheduleRepository : IBaseRepository<WorkSchedule>
     {
-        
+        Task<List<WorkSchedule>> GetByClinicIdAsync(Guid clinicId);
     }
 }

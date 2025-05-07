@@ -1,5 +1,5 @@
 using Dapper;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.Extensions.Configuration;
 using Tabibi.Domain.Clinics.Entities.Doctors;
 using Tabibi.Infrastructure.DbContexts;
@@ -14,23 +14,23 @@ public sealed class DoctorRepository(TabibiDbContext context,
 
     public IQueryable<TResponse> GetAllWithDto<TResponse>()
     {
-        string sql = @"SELECT 
-                   d.Id AS Id, 
-                   d.FullName_FirstName AS FirstName,
-                   d.FullName_MiddelName AS MiddelName,
-                   d.FullName_LastName AS LastName,
-                   d.Gender AS Gender, 
-                   d.DateOfBirth AS DateOfBirth, 
-                   d.PhoneNumber AS PhoneNumber, 
-                   d.EmailAddress AS EmailAddress, 
-                   d.PhotoUrl AS PhotoUrl, 
-                   d.Notes AS Notes, 
-                   d.ClinicId AS ClinicId,
-                   d.IsDeleted
-                   FROM Doctors d WITH(NOLOCK)
-                   WHERE d.IsDeleted = 0";
+        string sql = @"SELECT
+                    d.""Id"" AS ""Id"",
+                    d.""FullName_FirstName"" AS ""FirstName"",
+                    d.""FullName_MiddelName"" AS ""MiddelName"",
+                    d.""FullName_LastName"" AS ""LastName"",
+                    d.""Gender"" AS ""Gender"",
+                    d.""DateOfBirth"" AS ""DateOfBirth"",
+                    d.""PhoneNumber"" AS ""PhoneNumber"",
+                    d.""EmailAddress"" AS ""EmailAddress"",
+                    d.""PhotoUrl"" AS ""PhotoUrl"",
+                    d.""Notes"" AS ""Notes"",
+                    d.""ClinicId"" AS ""ClinicId"",
+                    d.""IsDeleted""
+                    FROM ""Doctors"" d
+                    WHERE d.""IsDeleted"" = false";
 
-        using var connection = new SqlConnection(_connectionString);
+        using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
 
         var doctors = connection.Query<TResponse>(sql)
@@ -41,24 +41,24 @@ public sealed class DoctorRepository(TabibiDbContext context,
 
     public TResponse GetByClinicId<TResponse>(Guid clinicId)
     {
-        string sql = @"SELECT 
-                   d.Id AS Id, 
-                   d.FullName_FirstName AS FirstName,
-                   d.FullName_MiddelName AS MiddelName,
-                   d.FullName_LastName AS LastName,
-                   d.Gender AS Gender, 
-                   d.DateOfBirth AS DateOfBirth, 
-                   d.PhoneNumber AS PhoneNumber, 
-                   d.EmailAddress AS EmailAddress, 
-                   d.PhotoUrl AS PhotoUrl, 
-                   d.Notes AS Notes, 
-                   d.ClinicId AS ClinicId,
-                   d.IsDeleted
-                   FROM Doctors d WITH(NOLOCK)
-                   WHERE d.IsDeleted = 0 
-                   AND ClinicId = @clinicId";
+        string sql = @"SELECT
+                    d.""Id"" AS ""Id"",
+                    d.""FullName_FirstName"" AS ""FirstName"",
+                    d.""FullName_MiddelName"" AS ""MiddelName"",
+                    d.""FullName_LastName"" AS ""LastName"",
+                    d.""Gender"" AS ""Gender"",
+                    d.""DateOfBirth"" AS ""DateOfBirth"",
+                    d.""PhoneNumber"" AS ""PhoneNumber"",
+                    d.""EmailAddress"" AS ""EmailAddress"",
+                    d.""PhotoUrl"" AS ""PhotoUrl"",
+                    d.""Notes"" AS ""Notes"",
+                    d.""ClinicId"" AS ""ClinicId"",
+                    d.""IsDeleted""
+                    FROM ""Doctors"" d
+                    WHERE d.""IsDeleted"" = false
+                    AND ""ClinicId"" = @clinicId";
 
-        using var connection = new SqlConnection(_connectionString);
+        using var connection = new NpgsqlConnection(_connectionString);
         connection.Open();
 
         var doctor = connection.QueryFirst<TResponse>(sql, new { clinicId });

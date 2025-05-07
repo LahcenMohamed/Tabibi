@@ -49,6 +49,7 @@ namespace Tabibi.Api.Controllers.Shared
         }
 
         [HttpPatch("confirm/{id:guid}")]
+
         public async Task<IActionResult> Confirm(Guid id)
         {
             var response = await Mediator.Send(new ConfirmAppointmentCommand(id));

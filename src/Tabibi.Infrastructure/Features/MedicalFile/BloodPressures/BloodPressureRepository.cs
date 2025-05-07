@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.Extensions.Configuration;
 using Tabibi.Domain.Patients.Entities;
 using Tabibi.Infrastructure.DbContexts;
@@ -12,18 +12,18 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.BloodPressures
     {
         public IQueryable<TResponse> GetByPatientId<TResponse>(Guid patientId)
         {
-            string sql = @"SELECT 
-                            Id,
-                            MinValue,
-                            MaxValue,
-                            Notes,
-                            IsDeleted,
-                            CreatedAt,
-                            PatientId
-                           FROM BloodPressures
-                           WHERE IsDeleted = 0
-                           AND PatientId = @patientId";
-            using var connection = new SqlConnection(_connectionString);
+            string sql = @"SELECT
+                             ""Id"",
+                             ""MinValue"",
+                             ""MaxValue"",
+                             ""Notes"",
+                             ""IsDeleted"",
+                             ""CreatedAt"",
+                             ""PatientId""
+                            FROM ""BloodPressures""
+                            WHERE ""IsDeleted"" = false
+                            AND ""PatientId"" = @patientId";
+            using var connection = new NpgsqlConnection(_connectionString);
             connection.Open();
             var bloodPressures = connection.Query<TResponse>(sql, new { patientId }).AsQueryable();
             return bloodPressures;

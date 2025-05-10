@@ -14,5 +14,12 @@ namespace Tabibi.Infrastructure.Features.Patients
             return await context.Set<Patient>()
                 .FirstOrDefaultAsync(p => p.UserId == userId && p.IsOwner);
         }
+
+        public async Task<List<Patient>> GetRelativesByUserIdAsync(Guid userId)
+        {
+            return await context.Set<Patient>()
+                .Where(p => p.UserId == userId && !p.IsOwner)
+                .ToListAsync();
+        }
     }
 }

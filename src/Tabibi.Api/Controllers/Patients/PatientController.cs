@@ -4,6 +4,7 @@ using Tabibi.Api.Bases;
 using Tabibi.Core.Features.Patients.Commands.Add;
 using Tabibi.Core.Features.Patients.Commands.AddRelative;
 using Tabibi.Core.Features.Patients.Queries.GetOwner;
+using Tabibi.Core.Features.Patients.Queries.GetRelatives;
 
 namespace Tabibi.Api.Controllers.Patients
 {
@@ -31,6 +32,13 @@ namespace Tabibi.Api.Controllers.Patients
         public async Task<IActionResult> GetOwner()
         {
             var response = await Mediator.Send(new GetOwnerPatientQuery());
+            return NewResult(response);
+        }
+
+        [HttpGet("relatives")]
+        public async Task<IActionResult> GetRelatives()
+        {
+            var response = await Mediator.Send(new GetRelativesQuery());
             return NewResult(response);
         }
     }

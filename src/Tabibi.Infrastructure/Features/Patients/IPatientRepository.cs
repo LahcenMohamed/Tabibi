@@ -6,5 +6,6 @@ namespace Tabibi.Infrastructure.Features.Patients
     public interface IPatientRepository : IBaseRepository<Patient>
     {
         Task<Patient?> GetOwnerByUserIdAsync(Guid userId);
+        Task<List<Patient>> GetRelativesByUserIdAsync(Guid userId);
     }
 }

@@ -10,7 +10,7 @@ namespace Tabibi.Domain.Abstractions
         public virtual void Update(string name, Guid userId)
         {
             Name = name;
-            LastModifiedAt = DateTime.UtcNow;
+            LastModifiedAt = DateTime.Now;
             LastModifiedBy = userId;
         }
     }

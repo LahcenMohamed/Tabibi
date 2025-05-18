@@ -23,7 +23,7 @@
         public void Delete(Guid deleterId)
         {
             IsDeleted = true;
-            DeletedAt = DateTime.UtcNow;
+            DeletedAt = DateTime.Now;
             DeletedBy = deleterId;
         }
     }

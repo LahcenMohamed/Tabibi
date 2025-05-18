@@ -26,8 +26,8 @@ namespace Tabibi.Domain.Patients.Entities
                 MaxValue = maxValue,
                 Notes = notes,
                 PatientId = patientId,
-                CreatedAt = DateTime.UtcNow,
-                LastModifiedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                LastModifiedAt = DateTime.Now,
                 CreatedBy = userId
             };
         }
@@ -38,7 +38,7 @@ namespace Tabibi.Domain.Patients.Entities
             MinValue = minValue;
             MaxValue = maxValue;
             Notes = notes;
-            LastModifiedAt = DateTime.UtcNow;
+            LastModifiedAt = DateTime.Now;
             LastModifiedBy = userId;
         }
     }

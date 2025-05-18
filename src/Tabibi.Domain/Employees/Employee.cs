@@ -44,7 +44,7 @@ namespace Tabibi.Domain.Employees
                 ClinicId = clinicId,
                 JobType = jobType,
                 CreatedBy = userId,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
             };
 
             return employee;
@@ -69,7 +69,7 @@ namespace Tabibi.Domain.Employees
             Description = description;
             JobType = jobType;
             LastModifiedBy = userId;
-            LastModifiedAt = DateTime.UtcNow;
+            LastModifiedAt = DateTime.Now;
         }
     }
 

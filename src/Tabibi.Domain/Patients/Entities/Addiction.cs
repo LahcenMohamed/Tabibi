@@ -15,7 +15,7 @@ namespace Tabibi.Domain.Patients.Entities
             {
                 Name = name,
                 PatientId = patientId,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 CreatedBy = userId
             };
         }

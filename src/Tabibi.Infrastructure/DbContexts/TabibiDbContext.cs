@@ -53,7 +53,7 @@ namespace Tabibi.Infrastructure.DbContexts
             {
                 foreach (var property in entityType.GetProperties())
                 {
-                    if (property.ClrType == typeof(DateTime))
+                    if (property.ClrType == typeof(DateTime) || property.ClrType == typeof(DateTime?))
                     {
                         property.SetColumnType("timestamp without time zone");
                     }
@@ -67,7 +67,7 @@ namespace Tabibi.Infrastructure.DbContexts
         public TabibiDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TabibiDbContext>();
-            optionsBuilder.UseNpgsql("Server=localhost; Port=5432; Database=TabibiDb; User Id=postgres; Password=0558;");
+            optionsBuilder.UseNpgsql("Server=localhost; Port=5432; Database=TabibiTDb; User Id=postgres; Password=0558;");
 
             return new TabibiDbContext(optionsBuilder.Options);
         }

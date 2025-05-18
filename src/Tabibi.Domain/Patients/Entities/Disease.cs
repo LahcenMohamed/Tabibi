@@ -26,7 +26,7 @@ namespace Tabibi.Domain.Patients.Entities
                 StartDate = startDate,
                 EndDate = endDate,
                 PatientId = patientId,
-                CreatedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
                 CreatedBy = userId
             };
         }
@@ -36,7 +36,7 @@ namespace Tabibi.Domain.Patients.Entities
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
-            LastModifiedAt = DateTime.UtcNow;
+            LastModifiedAt = DateTime.Now;
             LastModifiedBy = userId;
         }
     }

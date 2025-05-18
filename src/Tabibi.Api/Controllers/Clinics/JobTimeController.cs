@@ -4,6 +4,7 @@ using Tabibi.Api.Bases;
 using Tabibi.Core.Features.JobTimes.Commands.Add;
 using Tabibi.Core.Features.JobTimes.Commands.Delete;
 using Tabibi.Core.Features.JobTimes.Commands.Update;
+using Tabibi.Core.Features.JobTimes.Queries.Get;
 
 namespace Tabibi.Api.Controllers.Clinics
 {
@@ -12,6 +13,13 @@ namespace Tabibi.Api.Controllers.Clinics
     [Authorize(Roles = "Doctor")]
     public class JobTimeController : AppControllerBase
     {
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var response = await Mediator.Send(new GetJobTimesQuery());
+            return NewResult(response);
+        }
+        
         [HttpPost]
         public async Task<IActionResult> Create(AddJobTimeCommand command)
         {

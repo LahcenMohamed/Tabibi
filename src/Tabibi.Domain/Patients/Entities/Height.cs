@@ -21,8 +21,8 @@ namespace Tabibi.Domain.Patients.Entities
                 Value = value,
                 Notes = notes,
                 PatientId = patientId,
-                CreatedAt = DateTime.UtcNow,
-                LastModifiedAt = DateTime.UtcNow,
+                CreatedAt = DateTime.Now,
+                LastModifiedAt = DateTime.Now,
                 CreatedBy = userId
             };
         }
@@ -31,7 +31,7 @@ namespace Tabibi.Domain.Patients.Entities
         {
             Value = value;
             Notes = notes;
-            LastModifiedAt = DateTime.UtcNow;
+            LastModifiedAt = DateTime.Now;
             LastModifiedBy = userId;
         }
     }

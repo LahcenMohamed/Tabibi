@@ -32,6 +32,7 @@ namespace Tabibi.Api.Controllers.Patients.MedicalHistory
         }
 
         [HttpGet("patient/{patientId}")]
+         [AllowAnonymous]
         public async Task<IActionResult> GetByPatientId(Guid patientId)
         {
             return NewResult(await Mediator.Send(new GetGeneticDiseasesByPatientIdQuery(patientId)));

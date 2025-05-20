@@ -36,6 +36,7 @@ namespace Tabibi.Api.Controllers.Patients.MedicalHistory
         }
 
         [HttpGet("patient/{patientId}")]
+         [AllowAnonymous]
         public async Task<IActionResult> GetByPatientId([FromRoute] Guid patientId)
         {
             var query = new GetAddictionsByPatientIdQuery(patientId);

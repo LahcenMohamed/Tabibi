@@ -35,6 +35,7 @@ namespace Tabibi.Api.Controllers.Patients.MedicalFile
         }
 
         [HttpGet("{patientId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetWeights(Guid patientId)
         {
             var result = await Mediator.Send(new GetWeightsQuery(patientId));

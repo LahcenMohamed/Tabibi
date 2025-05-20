@@ -11,22 +11,25 @@ namespace Tabibi.Infrastructure.Features.MedicalFile.BloodPressures
         : BaseRepository<BloodPressure>(context, configuration), IBloodPressureRepository
     {
         public IQueryable<TResponse> GetByPatientId<TResponse>(Guid patientId)
-        {
-            string sql = @"SELECT
-                             ""Id"",
-                             ""MinValue"",
-                             ""MaxValue"",
-                             ""Notes"",
-                             ""IsDeleted"",
-                             ""CreatedAt"",
-                             ""PatientId""
-                            FROM ""BloodPressures""
-                            WHERE ""IsDeleted"" = false
-                            AND ""PatientId"" = @patientId";
-            using var connection = new NpgsqlConnection(_connectionString);
-            connection.Open();
-            var bloodPressures = connection.Query<TResponse>(sql, new { patientId }).AsQueryable();
-            return bloodPressures;
-        }
+{
+    const string sql = @"
+        SELECT
+            ""Id"",
+            ""MinValue"",
+            ""MaxValue"",
+            ""Notes"",
+            ""IsDeleted"",
+            ""CreatedAt"",
+            ""PatientId""
+        FROM ""BloodPressures""
+        WHERE ""IsDeleted"" = FALSE
+          AND ""PatientId"" = @patientId";
+
+    using var connection = new NpgsqlConnection(_connectionString);
+    connection.Open();
+    var result = connection.Query<TResponse>(sql, new { patientId }).AsQueryable();
+    return result;
+}
+
     }
 }

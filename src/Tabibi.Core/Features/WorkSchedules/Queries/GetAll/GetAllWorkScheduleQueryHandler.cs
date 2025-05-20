@@ -15,7 +15,7 @@ public sealed class GetAllWorkScheduleQueryHandler(ICurrentUserService currentUs
     {
         var clinicId = _currentUserService.GetClinicId();
         var lst = _unitOfWork.WorkScheduleRepository.GetAll()
-        .Where(x => x.ClinicId == clinicId && x.Date >= request.StartAt && x.Date <= request.EndAt)
+        .Where(x => x.ClinicId == clinicId)
         .ToDto();
 
         return Result.Success(lst);

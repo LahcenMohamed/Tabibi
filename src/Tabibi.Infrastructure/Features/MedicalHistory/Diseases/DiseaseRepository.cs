@@ -12,17 +12,19 @@ namespace Tabibi.Infrastructure.Features.MedicalHistory.Diseases
     {
         public IQueryable<TResponse> GetByPatientId<TResponse>(Guid patientId)
         {
-            string sql = @"SELECT 
-                            Id,
-                            Name,
-                            StartDate,
-                            EndDate
-                            CreatedAt,
-                            PatientId
-                           FROM Diseases
-                           WHERE IsDeleted = 0
-                           AND PatientId = @patientId";
-            using var connection = new SqlConnection(_connectionString);
+            string sql = @"
+                SELECT 
+                    ""Id"",
+                    ""Name"",
+                    ""StartDate"",
+                    ""EndDate"",
+                    ""CreatedAt"",
+                    ""PatientId""
+                FROM ""Diseases""
+                WHERE ""IsDeleted"" = FALSE
+                AND ""PatientId"" = @patientId";
+
+            using var connection = new Npgsql.NpgsqlConnection(_connectionString); // PostgreSQL
             connection.Open();
             var lst = connection.Query<TResponse>(sql, new { patientId }).AsQueryable();
             return lst;

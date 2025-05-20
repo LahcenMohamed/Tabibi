@@ -15,7 +15,7 @@ namespace Tabibi.Core.Features.MedicalHistory.GeneticDiseases.Queries.GetByPaite
             GetGeneticDiseasesByPatientIdQuery request,
             CancellationToken cancellationToken)
         {
-            var lst = _unitOfWork.ChronicDiseaseRepository.GetByPatientId<GeneticDiseasesResponse>(request.PatientId);
+            var lst = _unitOfWork.GeneticDiseaseRepository.GetByPatientId<GeneticDiseasesResponse>(request.PatientId);
             return Result.Success(lst);
         }
     }

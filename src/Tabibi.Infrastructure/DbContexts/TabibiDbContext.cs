@@ -62,14 +62,5 @@ namespace Tabibi.Infrastructure.DbContexts
         }
     }
 
-     public class TabibiDbContextFactory : IDesignTimeDbContextFactory<TabibiDbContext>
-    {
-        public TabibiDbContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<TabibiDbContext>();
-            optionsBuilder.UseNpgsql("Server=localhost; Port=5432; Database=TabibiTDb; User Id=postgres; Password=0558;");
-
-            return new TabibiDbContext(optionsBuilder.Options);
-        }
-    }
+    
 }

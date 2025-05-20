@@ -14,6 +14,7 @@ namespace Tabibi.Api.Controllers.Patients.MedicalFile
     public sealed class TemperatureController : AppControllerBase
     {
         [HttpGet("{patientId}")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetTemperatures(Guid patientId)
         {
             var result = await Mediator.Send(new GetTemperaturesQuery(patientId));

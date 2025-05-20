@@ -41,9 +41,9 @@ public class WorkScheduleController : AppControllerBase
         return NewResult(response);
     }
     [HttpGet]
-    public async Task<IActionResult> GetAll([FromQuery] GetAllWorkScheduleQuery query)
+    public async Task<IActionResult> GetAll()
     {
-        var response = await Mediator.Send(query);
+        var response = await Mediator.Send(new GetAllWorkScheduleQuery());
         return NewResult(response);
     }
 }

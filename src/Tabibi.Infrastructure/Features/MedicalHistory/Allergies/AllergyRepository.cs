@@ -17,7 +17,7 @@ namespace Tabibi.Infrastructure.Features.MedicalHistory.Allergies
                              ""Name"",
                              ""CreatedAt"",
                              ""PatientId""
-                            FROM ""Allergys""
+                            FROM ""Allergies""
                             WHERE ""IsDeleted"" = false
                             AND ""PatientId"" = @patientId";
             using var connection = new NpgsqlConnection(_connectionString);
